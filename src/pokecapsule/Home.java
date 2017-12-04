@@ -174,7 +174,28 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRunActionPerformed
-       
+        int wallet = 0;
+        if(firstRun){
+            wallet = txtWallet.getText().equals("") ? 0 : Integer.parseInt(txtWallet.getText());
+            firstRun = false;
+        }else {
+            wallet = lblFinalWallet.getText().equals("") ? 0 : Integer.parseInt(lblFinalWallet.getText());
+        }
+        int getFor10x = txtDiamGet.getText().equals("") ? 0 : Integer.parseInt(txtDiamGet.getText());
+        int open = lbl10open.getText().equals("") ? 0 : Integer.parseInt(lbl10open.getText());
+        int diamEarned = lblDiamEarned.getText().equals("") ? 0 : Integer.parseInt(lblDiamEarned.getText());
+        int spend = lblDiamSpend.getText().equals("") ? 0 : Integer.parseInt(lblDiamSpend.getText());
+        if(wallet >= capsuleValue){
+            wallet-=capsuleValue;
+            wallet+=getFor10x;
+            diamEarned+=getFor10x;
+            spend+=capsuleValue;
+            open++;
+        }
+        lblFinalWallet.setText(Integer.toString(wallet));
+        lbl10open.setText(Integer.toString(open));
+        lblDiamEarned.setText(Integer.toString(diamEarned));
+        lblDiamSpend.setText(Integer.toString(spend));
     }//GEN-LAST:event_btnRunActionPerformed
 
     private void txtWalletKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtWalletKeyTyped
@@ -198,16 +219,15 @@ public class Home extends javax.swing.JFrame {
         lbl10open.setText("0");
         lblDiamEarned.setText("0");
         lblDiamSpend.setText("0");
+        firstRun = true;
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnRunAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRunAllActionPerformed
-         int capsuleValue = 2488;
         int wallet = txtWallet.getText().equals("") ? 0 : Integer.parseInt(txtWallet.getText());
         int getFor10x = txtDiamGet.getText().equals("") ? 0 : Integer.parseInt(txtDiamGet.getText());
         int spend = 0;
         int open = 0;
         int diamEarned = 0;
-        //int newWallet = wallet;
         while(wallet >= capsuleValue){
             wallet-=capsuleValue;
             wallet+=getFor10x;
@@ -221,6 +241,10 @@ public class Home extends javax.swing.JFrame {
         lblDiamSpend.setText(Integer.toString(spend));
     }//GEN-LAST:event_btnRunAllActionPerformed
 
+    
+    int capsuleValue = 2488;
+
+    boolean firstRun = true;
     /**
      * @param args the command line arguments
      */
