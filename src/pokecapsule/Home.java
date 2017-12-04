@@ -38,13 +38,15 @@ public class Home extends javax.swing.JFrame {
         lblDiamEarned = new javax.swing.JLabel();
         lbl10open = new javax.swing.JLabel();
         lblFinalWallet = new javax.swing.JLabel();
-        gtnReset = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         lblDiamSpend = new javax.swing.JLabel();
+        btnRunAll = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        txtWallet.setText("0");
         txtWallet.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtWalletKeyTyped(evt);
@@ -55,13 +57,14 @@ public class Home extends javax.swing.JFrame {
 
         jLabel2.setText("Diamonds gets from 10x:");
 
+        txtDiamGet.setText("0");
         txtDiamGet.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDiamGetKeyTyped(evt);
             }
         });
 
-        btnRun.setText("Run");
+        btnRun.setText("Run Once");
         btnRun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRunActionPerformed(evt);
@@ -80,11 +83,23 @@ public class Home extends javax.swing.JFrame {
 
         lblFinalWallet.setText("0");
 
-        gtnReset.setText("Reset");
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Diamonds spend:");
 
         lblDiamSpend.setText("0");
+
+        btnRunAll.setText("Run All");
+        btnRunAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRunAllActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,8 +108,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnRun, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(gtnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -113,7 +127,11 @@ public class Home extends javax.swing.JFrame {
                                     .addComponent(lblDiamEarned)))
                             .addComponent(jLabel5)
                             .addComponent(jLabel4))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRun, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnRunAll, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -144,9 +162,11 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(lblFinalWallet))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRun)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRun)
+                    .addComponent(btnRunAll))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(gtnReset)
+                .addComponent(btnReset)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -154,24 +174,7 @@ public class Home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRunActionPerformed
-        int capsuleValue = 2488;
-        int wallet = Integer.parseInt(txtWallet.getText());
-        int getFor10x = Integer.parseInt(txtDiamGet.getText());
-        int spend = 0;
-        int open = 0;
-        int diamEarned = 0;
-        //int newWallet = wallet;
-        while(wallet >= capsuleValue){
-            wallet-=capsuleValue;
-            wallet+=getFor10x;
-            diamEarned+=getFor10x;
-            spend+=capsuleValue;
-            open++;
-        }
-        lblFinalWallet.setText(Integer.toString(wallet));
-        lbl10open.setText(Integer.toString(open));
-        lblDiamEarned.setText(Integer.toString(diamEarned));
-        lblDiamSpend.setText(Integer.toString(spend));
+       
     }//GEN-LAST:event_btnRunActionPerformed
 
     private void txtWalletKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtWalletKeyTyped
@@ -187,6 +190,36 @@ public class Home extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtDiamGetKeyTyped
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        txtWallet.setText("0");
+        txtDiamGet.setText("0");
+        lblFinalWallet.setText("0");
+        lbl10open.setText("0");
+        lblDiamEarned.setText("0");
+        lblDiamSpend.setText("0");
+    }//GEN-LAST:event_btnResetActionPerformed
+
+    private void btnRunAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRunAllActionPerformed
+         int capsuleValue = 2488;
+        int wallet = txtWallet.getText().equals("") ? 0 : Integer.parseInt(txtWallet.getText());
+        int getFor10x = txtDiamGet.getText().equals("") ? 0 : Integer.parseInt(txtDiamGet.getText());
+        int spend = 0;
+        int open = 0;
+        int diamEarned = 0;
+        //int newWallet = wallet;
+        while(wallet >= capsuleValue){
+            wallet-=capsuleValue;
+            wallet+=getFor10x;
+            diamEarned+=getFor10x;
+            spend+=capsuleValue;
+            open++;
+        }
+        lblFinalWallet.setText(Integer.toString(wallet));
+        lbl10open.setText(Integer.toString(open));
+        lblDiamEarned.setText(Integer.toString(diamEarned));
+        lblDiamSpend.setText(Integer.toString(spend));
+    }//GEN-LAST:event_btnRunAllActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,8 +258,9 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnRun;
-    private javax.swing.JButton gtnReset;
+    private javax.swing.JButton btnRunAll;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
